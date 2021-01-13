@@ -25,7 +25,6 @@ float random (vec2 st) {
 
 void main() {
     vec2 st = gl_FragCoord.xy/u_resolution.xy;
-    //st.x *= u_resolution.x/u_resolution.y;
     
     vec3 color = vec3(0.87);
     
@@ -40,12 +39,8 @@ void main() {
     }
     st = rotate2D(st, PI * (cos(u_time)) * 0.825 / 100.0);
     st *= 40.0;
-    
-    ///st /= 60.0;
+   
     color = vec3( 0.5 * sin(st.x + u_time) + st.x * 0.245, 0.5 * sin(st.y * 0.32478 + u_time) + 0.5, sin(st.x + st.y));
-    
-   //float rnd = random(st + u_time);
-   //color *= rnd * u_time / 100.0;
 
     gl_FragColor = vec4(color,1.0);
 }
