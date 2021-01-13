@@ -1,11 +1,3 @@
-/**
- * Part 1 Challenges
- * - Make the circle yellow
- * - Make the circle smaller by decreasing its radius
- * - Make the circle smaller by moving the camera back
- * - Make the size of the circle oscillate using the sin() function and the iTime
- *   uniform provided by shadertoy
- */
 #ifdef GL_ES
 precision mediump float;
 #endif
@@ -106,13 +98,6 @@ mat4 rotateY(float theta) {
 }
 
 
-/**
- * Signed distance function describing the scene.
- * 
- * Absolute value of the return value indicates the distance to the surface.
- * Sign indicates whether the point is inside or outside the surface,
- * negative indicating inside.
- */
 float sceneSDF(vec3 samplePoint) {
     float c = 1.17;
     float sphereDist = sphereSDF(samplePoint /c) * c;
@@ -134,9 +119,6 @@ float sceneSDF(vec3 samplePoint) {
     float box = onionSDF(smoothSubtractionSDF(torusDist, smoothIntersectionSDF(cubeDist, balls, 1.5), 0.3), abs(sin(u_time + gl_FragCoord.x ))-0.1);
     return smoothSubtractionSDF(onionSDF(torusDist, 0.3), onionSDF(balls, 0.1), 0.5) ;
 }
-
-//////////////////////////
-
 
 /**
  * Using the gradient of the SDF, estimate the normal on the surface at point p.
@@ -303,8 +285,7 @@ float random (vec2 st) {
 void main()
 {
     vec2 st = gl_FragCoord.xy;
-    
-	vec3 viewDir = rayDirection(45.0, u_resolution.xy, st);
+    vec3 viewDir = rayDirection(45.0, u_resolution.xy, st);
     vec3 eye = vec3(5.0, 5.0, 15.0);
     mat4 viewToWorld = viewMatrix(eye, vec3(0.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0));
     
@@ -314,9 +295,7 @@ void main()
     
     if (dist > MAX_DIST - EPSILON) {
        gl_FragColor = vec4(1.0);
-      // gl_FragColor = vec4(0.0);
-      //gl_FragColor = vec4(0.0,0.4, 0.8, 1.0);
-         return;
+       return;
     }
     
     // The closest point on the surface to the eyepoint along the view ray
@@ -330,11 +309,6 @@ void main()
     vec3 K_s = vec3(0.616,1.000,0.097);
     float shininess = 15.0;
     
-    vec3 color = phongIllumination(K_a, K_d, K_s, shininess, p, eye);
-    
-   // color *= 1.1;
-    
-    //color = 1.0-color;
-    
+    vec3 color = phongIllumination(K_a, K_d, K_s, shininess, p, eye);   
     gl_FragColor = vec4(color, 0.95);
 }
