@@ -1,11 +1,3 @@
-/**
- * Part 1 Challenges
- * - Make the circle yellow
- * - Make the circle smaller by decreasing its radius
- * - Make the circle smaller by moving the camera back
- * - Make the size of the circle oscillate using the sin() function and the iTime
- *   uniform provided by shadertoy
- */
 #ifdef GL_ES
 precision mediump float;
 #endif
@@ -83,13 +75,6 @@ mat4 rotateY(float theta) {
 }
 
 
-/**
- * Signed distance function describing the scene.
- * 
- * Absolute value of the return value indicates the distance to the surface.
- * Sign indicates whether the point is inside or outside the surface,
- * negative indicating inside.
- */
 float sceneSDF(vec3 samplePoint) {
     float c = 1.17;
     float sphereDist = sphereSDF(samplePoint /c) * c;
@@ -103,8 +88,6 @@ float sceneSDF(vec3 samplePoint) {
     //float cylinderDist = sdCylinder(samplePoint, vec3(0.0, 0.0, 0.5));
     return intersectSDF(cubeDist, balls);
 }
-
-//////////////////////////
 
 
 /**
@@ -259,7 +242,7 @@ mat4 viewMatrix(vec3 eye, vec3 center, vec3 up) {
 
 void main()
 {
-	vec3 viewDir = rayDirection(45.0, u_resolution.xy, gl_FragCoord.xy );
+    vec3 viewDir = rayDirection(45.0, u_resolution.xy, gl_FragCoord.xy );
     vec3 eye = vec3(8.0, 5.0, 7.0);
     mat4 viewToWorld = viewMatrix(eye, vec3(0.0, 0.0, 0.0), vec3(0.0, 1.0, 0.0));
     
