@@ -1,4 +1,4 @@
-#01/14
+// 01/14
 
 #ifdef GL_ES
 precision mediump float;
