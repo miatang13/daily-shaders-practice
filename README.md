@@ -1,5 +1,5 @@
 # DailyShadersPractice
-Dumpster for the daily shaders practice I do. I only put good(?) ones here. 
+Dumpster for the daily shaders practice I do. 
 
 ![Shader](/gifs/handMixer.gif)
 ![Shader](/gifs/flyingCubes.gif)
